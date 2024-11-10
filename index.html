@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Pomodoro Timer</title>
+
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- ICONS -->
+    <script src="https://kit.fontawesome.com/6f3103b13c.js" crossorigin="anonymous"></script>
+
+    <!-- CSS -->
+
+<style type="text/css">
+    :root {
+    font-size: 62.5%; /* 1rem = 10px */
+
+    --color-primary: hsl(235, 35%, 19%);
+    --color-secondary: hsl(358, 78%, 69%);
+    --color-font: hsla(0, 0%, 100%, 0.902);
+
+    --color-shadow: hsl(235, 36%, 35%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    background-color: var(--color-primary);
+    font-size: 1.6rem;
+    font-family: 'Open sans', sans-serif;
+}
+
+
+p,
+i,
+h1 {
+    color: var(--color-font);
+}
+
+i {
+    font-size: 3.2rem;
+}
+
+h1 {
+    font-size: 2.8rem;
+    text-align: center;
+    width: 50rem;
+}
+
+/* ==== CONTENT ==== */
+
+section {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+/* Header */
+        header {
+            width: 80%;
+            margin: 4rem 13rem;
+            border-radius: 30px;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+                
+        }
+        header .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            transition: .5s ease;
+        }
+        header .logo:hover {
+            color: var(--color-secondary);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            list-style: none;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: .5s ease;
+        }
+        nav ul li a:hover {
+            color: var(--color-secondary);
+        }
+        /* Responsive Menu */
+        .menu-icon, .close-icon {
+            display: none;
+            font-size: 28px;
+            color: #fff;
+            cursor: pointer;
+            margin-left: 15rem;
+        
+}
+
+.container{
+  margin-top: 20rem;
+}
+.container {
+    width: min(42.5rem, 100%);
+    margin-inline: auto;
+    padding-inline: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.painel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    width: 20rem;
+    margin-block: 5rem;
+    padding: 1rem;
+    border-radius: 10rem;
+    -webkit-box-shadow: 0px 0px 15px 10px var(--color-shadow); 
+    box-shadow: 0px 0px 15px 10px var(--color-shadow);
+}
+
+.painel p {
+    opacity: .8;
+    transition: 1s ease-in;
+}
+
+.painel p.active {
+    opacity: 1;
+    color: var(--color-secondary);
+}
+
+.timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30rem;
+    height: 30rem;
+    border-radius: 50%;
+    -webkit-box-shadow: 0px 0px 15px 10px var(--color-shadow); 
+    box-shadow: 0px 0px 15px 10px var(--color-shadow);
+}
+
+.circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 26rem;
+    height: 26rem;
+    border-radius: 50%;
+    background-color: var(--color-secondary);
+    position: relative;
+}
+
+.circle::before {
+    content: '';
+    position: absolute;
+    width: 95%;
+    height: 95%;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+}
+
+.time {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+.time p {
+    font-size: 5.6rem;
+}
+
+.time p:nth-of-type(2) {
+    position: relative;
+    top: -.5rem;
+    margin-inline: 1rem;
+}
+
+.controls {
+    margin-top: 3rem;
+}
+
+.controls button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.controls #reset {
+    display: none;
+}
+
+/* Mobile Styles */
+        @media (max-width: 768px) {
+            header{
+                width: 100%;
+                margin: 0;
+            border-radius: 30px;
+            border-radius: 0;
+            }
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                width: 200px;
+                padding: 20px;
+                display: none;
+                border-radius: 8px;
+            }
+            .menu-icon {
+                display: block;
+            }
+            nav.active ul {
+                display: flex;
+            }
+        }
+</style>
+
+
+</head>
+<body>
+
+
+<header>
+    <div class="logo">Time Manager</div>
+    <div class="menu-icon" onclick="toggleMenu()"><i class="fa-solid fa-list"></i></div>
+    <div class="close-icon" onclick="toggleMenu()"><i class="fa-solid fa-xmark"></i></div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="todoList.html">To do list</a></li>
+            <li><a href="imgtopdf.html">Convertor</a></li>
+        </ul>
+    </nav>
+</header>
+    <section>
+        <div class="container">
+            <h1>Manage your time effectively<br> with Pomodoro</h1>
+
+            <div class="painel">
+                <p id="work">Start</p>
+                <p id="break">break</p>
+            </div>
+
+            <div class="timer">
+                <div class="circle">
+                    <div class="time">
+                        <p id="minutes"></p>
+                        <p>:</p>
+                        <p id="seconds"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="start" onclick="start()"><i class="fa-solid fa-play"></i></button>
+
+                <a id="reset" href="./"><i class="fa-solid fa-arrow-rotate-left"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCRIPT -->
+
+<script src="pomodoroApp.js"></script>
+
+</body>
+</html>

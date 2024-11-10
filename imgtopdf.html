@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+	 <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Convert image to pdf</title>
+
+	
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+		
+<style type="text/css">
+
+	@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap');
+	@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+
+:root {
+  
+
+    --color-primary: hsl(235, 35%, 19%);
+    --color-secondary: hsl(358, 78%, 69%);
+    --color-font: hsla(0, 0%, 100%, 0.902);
+
+    --color-shadow: hsl(235, 36%, 35%);
+}
+
+*,*:after,*:before{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+}
+body{
+	font-family: 'Open sans', sans-serif;
+	font-size: 16px;
+	margin: 0;
+	background: var(--color-primary) /*linear-gradient(133deg, #4abeb2, #3c57d2)*/;
+	color: #000;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+}
+h1{
+	font-size: 40px;
+	font-weight: 700;
+	color: #fff;
+	text-align: center;
+}
+
+/* Header */
+		header {
+			width: 80%;
+            margin: 4rem 10rem;
+            border-radius: 30px;
+			padding: 15px 20px;
+			background: rgba(255, 255, 255, 0.1);
+			backdrop-filter: blur(10px);
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 1000;
+		}
+		header .logo {
+			font-size: 24px;
+			font-weight: bold;
+			color: #fff;
+		    transition: .5s ease;
+        }
+        header .logo:hover {
+            color: var(--color-secondary);
+        }
+		nav ul {
+			display: flex;
+			gap: 20px;
+		}
+		nav ul li {
+			list-style: none;
+		}
+		nav ul li a {
+			color: #fff;
+			text-decoration: none;
+			font-size: 18px;
+			font-weight: 500;
+		    transition: .5s ease;
+        }
+        nav ul li a:hover {
+            color: var(--color-secondary);
+        }
+		/* Responsive Menu */
+		.menu-icon, .close-icon {
+			display: none;
+			font-size: 28px;
+			color: #fff;
+			cursor: pointer;
+			margin-left: 13rem;
+		}
+.container{
+	margin-top: 12rem;
+	margin-bottom: 3rem;
+}
+
+.upload-img{
+	widows: 300px;
+	margin: auto 30px;
+	text-align: center;
+	position: relative;
+	padding: 15px;
+	font-size: 22px;
+	color: #fff;
+	background: rgba(255, 255, 255, 0.1);
+	border-radius: 25px;
+	    -webkit-box-shadow: 0px 0px 15px 10px var(--color-shadow); 
+    box-shadow: 0px 0px 15px 10px var(--color-shadow);
+}
+.upload-img input{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	opacity: 0;
+	cursor: pointer;
+}
+#showImg{
+	display: block;
+	margin: 20px auto;
+	max-width: 400px;
+	border-radius: 25px;
+	
+}
+button{
+	widows: 300px;
+	margin: 30px auto 0;
+	outline: none;
+	border: none;
+	text-align: center;
+	position: relative;
+	padding: 15px;
+	font-size: 22px;
+	color: #fff;
+	display: block;
+	cursor: pointer;
+    background: var(--color-primary);
+    -webkit-box-shadow: 0px 0px 15px 10px var(--color-shadow); 
+    box-shadow: 0px 0px 15px 10px var(--color-shadow);
+}
+
+
+/* Mobile Styles */
+		@media (max-width: 768px) {
+			header{
+                width: 100%;
+                margin: 0;
+            border-radius: 30px;
+            border-radius: 0;
+            }
+			nav ul {
+				flex-direction: column;
+				position: absolute;
+				top: 60px;
+				right: 0;
+				background: rgba(255, 255, 255, 0.1);
+			    backdrop-filter: blur(10px);
+				width: 200px;
+				padding: 20px;
+				display: none;
+				border-radius: 8px;
+			}
+			.menu-icon {
+				display: block;
+			}
+			nav.active ul {
+				display: flex;
+			}
+		}
+</style>
+</head>
+<body>
+
+
+<header>
+    <div class="logo">Convertor</div>
+    <div class="menu-icon" onclick="toggleMenu()"><i class="fa-solid fa-list"></i></div>
+    <div class="close-icon" onclick="toggleMenu()"><i class="fa-solid fa-xmark"></i></div>
+    <nav>
+        <ul>
+            <li><a href="imgtopdf.html">Home</a></li>
+            <li><a href="index.html">Pomodoro</a></li>
+            <li><a href="todoList.html">To do List</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+<div class="container">
+	<h1>Convert image to PDF </h1>
+	<div class="upload-img">
+		<input type="file" name="" onChange="loadImg(event)" accept=".png, .jpg, .jpeg">
+		Upload Image
+	</div>
+	<img id="showImg" src="imgIcon.webp">
+	<button onclick="pdfDown()">Image To PDF</button>
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+
+<script type="text/javascript">
+	var newImg, showImg;
+
+	function loadImg(event) {
+		showImg = document.getElementById('showImg');
+		showImg.src = URL.createObjectURL(event.target.files[0]);
+
+
+        newImg = document.createElement('img');
+        newImg.src = URL.createObjectURL(event.target.files[0]);
+
+		showImg.onload = function(){
+			URL.revokeObjectURL(showImg.src)   // free memory
+		}
+	}
+
+    function pdfDown() {
+    	console.log(newImg)
+
+    	var doc = new jsPDF();
+    	doc.addImage(newImg, 10, 10);
+    	doc.save('imgToPdf.pdf');
+    }
+ 
+
+</script>
+
+<script type="text/javascript">
+	 // nav bar responsiveness
+        function toggleMenu() {
+        const nav = document.querySelector('nav');
+        nav.classList.toggle('active');
+        document.querySelector('.menu-icon').style.display = nav.classList.contains('active') ? 'none' : 'block';
+        document.querySelector('.close-icon').style.display = nav.classList.contains('active') ? 'block' : 'none';
+    }
+</script>
+</body>
+</html>

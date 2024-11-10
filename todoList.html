@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> To Do List</title>
+    <!--Google Font-->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+
+    <!--Stylesheet-->
+    <link rel="stylesheet" href="todoListStyle.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+
+<header>
+    <div class="logo">Task Manager</div>
+    <div class="menu-icon" onclick="toggleMenu()"><i class="fa-solid fa-list"></i></div>
+    <div class="close-icon" onclick="toggleMenu()"><i class="fa-solid fa-xmark"></i></div>
+    <nav>
+        <ul>
+            <li><a href="todoList.html">Home</a></li>
+            <li><a href="index.html">Pomodoro</a></li>
+            <li><a href="imgtopdf.html">Convertor</a></li>
+        </ul>
+    </nav>
+</header>
+
+  <div class="app">
+    <div class="container">
+        <div id="newtask">
+            <input type="text" placeholder="Task to do...">
+            <button id="push">Add</button>
+        </div>
+        <div id="tasks">
+            <p id="pending-tasks">You have <span class="count-value"> 0 </span> Task(s) to complete</p>
+        </div>
+    </div>
+    <p id="error">Add a task name !</p>
+  </div>
+
+
+
+    <!--Script-->
+    <script src="todoListscript.js"></script>
+</body>
+</html>
